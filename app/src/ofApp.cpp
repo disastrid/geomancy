@@ -1,5 +1,5 @@
 #include "ofApp.h"
-#include "ofxMaxim.h"
+
 
 float height, width, center, diagonal;
 float sqrt_2 = 1.4142135623731;
@@ -9,12 +9,12 @@ float phase = 0;
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetBackgroundColor(0);
-    height = ofGetHeight();
-    width = ofGetWidth();
-    center = ofGetHeight()/2;
+    height = ofGetHeight()/2;
+    width = ofGetWidth()/2;
+    center = ofGetHeight()/4;
     ofSetCircleResolution(500);
     
-    diagonal = ofGetHeight() * sqrt_2;
+    diagonal = ofGetHeight()/2 * sqrt_2;
     
     
     
@@ -26,14 +26,17 @@ void ofApp::update(){
 //        alpha++;
 //    }  else if (alpha >= 255)
 //        alpha--;
-    alpha = 255 * abs(osc1.sinewave(220));
-    cout << alpha;
-    ofSetColor(255, 0, 0, alpha);
+    
+    alpha = 255 * abs(osc1.sinewave(1200));
+//    alpha = 255 * abs(osc1.saw(1200));
+//    alpha = 255 * abs(osc1.triangle(220));
+//    alpha = 255 * osc1.square(4);
+//    ofSetColor(255, 0, 0, alpha);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-//        ofSetColor(255, 0, 0, alpha);
+        ofSetColor(255, 0, 0);
 
 //    ofSetColor(255, 0, 0, 255);
     
@@ -55,7 +58,24 @@ void ofApp::draw(){
     //        drawQuarterPie(50, PI/2, 0, 0, PI/2, ofGetWidth());
     //        drawQuarterPie(50, PI/2, width, height, 3*PI/2, ofGetWidth());
     
-    drawLeaf(false);
+    drawLeaf(true);
+    ofPushMatrix();
+    ofTranslate(ofGetWidth()/2,ofGetWidth()/2);
+    drawLeaf(true);
+    ofPopMatrix();
+    
+
+    ofPushMatrix();
+    ofTranslate(ofGetWidth(),0);
+    ofRotate(90);
+    drawLeaf(true);
+    ofPopMatrix();
+    
+    ofPushMatrix();
+    ofTranslate(0,ofGetWidth());
+    ofRotate(-90);
+    drawLeaf(true);
+    ofPopMatrix();
     
 }
 
@@ -210,7 +230,7 @@ void ofApp::drawLeaf(bool positive) {
     int numSteps = 50;
     
     float oneAngleUnit = PI/2 / float(numSteps-1);
-    float radius = ofGetWidth();
+    float radius = width;
     float startTheta = PI/2;
     float startX = 0;
     float startY = 0;
