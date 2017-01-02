@@ -32,5 +32,6 @@ public:
     float sqrt_2 = 1.4142135623731;
     int alpha = 0;
     float phase = 0;
+    int blockDim, tileDim;
 
 };

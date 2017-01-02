@@ -1,0 +1,42 @@
+
+// Draw an arc.
+ofBeginShape();
+if (!positive)
+ofVertex(abs(startX-width), abs(startY-height));
+
+for (int i = 0; i < numSteps; i++){
+float anglef = startTheta - (float(i) * oneAngleUnit);
+
+float x = startX + radius * cos(anglef);
+float y = startY + radius * sin(anglef);
+ofVertex(x,y);
+//        angleCalculator += oneAngleUnit;
+//    			radius 	+= radiusAdder;
+}
+if (!positive) {
+ofVertex(abs(startX-width), abs(startY-height));
+ofEndShape();
+ofBeginShape();
+}
+
+startTheta = 3*PI/2;
+startX = width;
+startY = height;
+
+if (!positive) {
+ofVertex(0, 0);
+}
+for (int i = 0; i < numSteps; i++){
+float anglef = startTheta - (float(i) * oneAngleUnit);
+
+float x = startX + radius * cos(anglef);
+float y = startY + radius * sin(anglef);
+ofVertex(x,y);
+//        angleCalculator += oneAngleUnit;
+//    			radius 	+= radiusAdder;
+}
+if (!positive)
+ofVertex(0, 0);
+
+ofEndShape();
+}

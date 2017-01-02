@@ -6,6 +6,8 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetBackgroundColor(0);
+    tileDim = 100;
+    blockDim = 200;
     height = ofGetHeight()/2;
     width = ofGetWidth()/2;
     center = ofGetHeight()/4;
