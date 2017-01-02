@@ -25,5 +25,6 @@ public:
     void drawCentreArc(int totalSteps, float totalDistance, float posX, float posY, float startAngle);
     void drawLeaf(bool positive);
     void blendShapes();
+    void drawThirds(int mode, bool filled);
     maxiOsc osc1;
 };
