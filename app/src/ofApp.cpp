@@ -1,10 +1,7 @@
 #include "ofApp.h"
+#include "Geomancy.h"
 
 
-float height, width, center, diagonal;
-float sqrt_2 = 1.4142135623731;
-int alpha = 0;
-float phase = 0;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -85,7 +82,7 @@ void ofApp::draw(){
     // draw 1/3 sections of each square:
     
 //    drawThirds(4, true);
-    drawThirds(1, false);
+    drawThirds(5, false);
 }
 
 //--------------------------------------------------------------
@@ -232,60 +229,6 @@ void ofApp::drawCentreArc(int totalSteps, float totalDistance, float otherX, flo
     
 }
 
-void ofApp::drawLeaf(bool positive) {
-    // draw the oval shape that is the result of two overlapping quarter pies.
-    //    drawQuarterPie(50, PI/2, 0, 0, PI/2, ofGetWidth());
-    //    drawQuarterPie(50, PI/2, width, height, 3*PI/2, ofGetWidth());
-    int numSteps = 50;
-    
-    float oneAngleUnit = PI/2 / float(numSteps-1);
-    float radius = width;
-    float startTheta = PI/2;
-    float startX = 0;
-    float startY = 0;
-    
-    
-    // Draw an arc.
-    ofBeginShape();
-    if (!positive)
-        ofVertex(abs(startX-width), abs(startY-height));
-    
-    for (int i = 0; i < numSteps; i++){
-        float anglef = startTheta - (float(i) * oneAngleUnit);
-        
-        float x = startX + radius * cos(anglef);
-        float y = startY + radius * sin(anglef);
-        ofVertex(x,y);
-        //        angleCalculator += oneAngleUnit;
-        //    			radius 	+= radiusAdder;
-    }
-    if (!positive) {
-        ofVertex(abs(startX-width), abs(startY-height));
-        ofEndShape();
-        ofBeginShape();
-    }
-    
-    startTheta = 3*PI/2;
-    startX = width;
-    startY = height;
-    
-    if (!positive) {
-        ofVertex(0, 0);
-    }
-    for (int i = 0; i < numSteps; i++){
-        float anglef = startTheta - (float(i) * oneAngleUnit);
-        
-        float x = startX + radius * cos(anglef);
-        float y = startY + radius * sin(anglef);
-        ofVertex(x,y);
-        //        angleCalculator += oneAngleUnit;
-        //    			radius 	+= radiusAdder;
-    }
-    if (!positive)
-        ofVertex(0, 0);
-    
-    ofEndShape();
-}
 
 //void ofApp::drawVertCentre(bool filled int version) {
 //    // version 1 = vertical column, centre middle
@@ -371,13 +314,6 @@ void ofApp::drawThirds(int mode, bool filled) {
                 ofVertex(0, height/2);
                 ofVertex(0,0);
                 ofVertex(width, 0);
-                break;
-            case 5:
-                ofVertex(0, height);
-                ofVertex(0, height/2);
-                ofVertex(width, height);
-                ofVertex(0, height);
-                ofVertex(width/2, 0);
                 break;
         }
     }

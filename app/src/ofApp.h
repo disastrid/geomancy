@@ -1,6 +1,7 @@
 #pragma once
 #include "ofxMaxim.h"
 #include "ofMain.h"
+#include <string>
 
 class ofApp : public ofBaseApp{
     
@@ -27,4 +28,9 @@ public:
     void blendShapes();
     void drawThirds(int mode, bool filled);
     maxiOsc osc1;
+    float height, width, center, diagonal;
+    float sqrt_2 = 1.4142135623731;
+    int alpha = 0;
+    float phase = 0;
+
 };
