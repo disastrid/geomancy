@@ -20,13 +20,13 @@ class Geomancy {
     
 };
 
-class Block {
-public:
-    Block(); // block constructor
-    
-private:
-//    Tile tiles[NTILES];
-};
+//class Block {
+//public:
+//    Block(); // block constructor
+//    
+//private:
+////    Tile tiles[NTILES];
+//};
 
 class Tile {
 public:
